@@ -1,0 +1,84 @@
+/* style.css */
+body { 
+    font-family: 'Arial', sans-serif; 
+    background-color: #f4f4f4; 
+    margin: 0; 
+    padding: 20px; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Para ocupar a altura total da tela */
+}
+
+h1 {
+    color: #333; /* Cor do texto */
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+form { 
+    background: #fff; 
+    padding: 20px; 
+    border-radius: 5px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+}
+
+input, button { 
+    margin: 10px 0; 
+    padding: 10px; 
+    width: 100%; 
+    box-sizing: border-box; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+
+button { 
+    background: #5cb85c; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    transition: background 0.3s; /* Transição suave para o hover */
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+}
+
+button:hover {
+    background: #4cae4c; /* Efeito hover */
+}
+
+.form-check-input {
+    width: 1.5em; /* Aumenta a largura do checkbox */
+    height: 1.5em; /* Aumenta a altura do checkbox */
+    margin-top: 0.3em; /* Ajusta a margem superior para centralizar verticalmente */
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+    body {
+        padding: 10px; /* Reduz o padding em telas pequenas */
+    }
+
+    .container {
+        padding: 15px; /* Reduz o padding do container */
+    }
+
+    h1 {
+        font-size: 1.5em; /* Tamanho da fonte menor em telas pequenas */
+    }
+
+    input, button {
+        padding: 8px; /* Reduz o padding dos inputs e botões */
+        font-size: 14px; /* Tamanho da fonte menor em telas pequenas */
+    }
+    div {
+    display: flex;
+    flex-direction: column;
+    }
+
+}

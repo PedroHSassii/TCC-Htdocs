@@ -1,0 +1,51 @@
+\documentclass[article]{sbc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\title{Sistema de Controle de Temperatura com Automação de Ar-Condicionado}
+\author{Pedro H. Sassi}
+\address{Instituto Federal Farroupilha \\ Frederico Westphalen, Rio Grande do Sul \\ pedro.2019010346@aluno.ffar.edu.br}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Este artigo apresenta um sistema de controle de temperatura que permite a automação do ar-condicionado através de uma interface web. O sistema é projetado para proporcionar conforto e eficiência energética, permitindo que os usuários ajustem a temperatura de seus ambientes de forma remota.
+\end{abstract}
+
+\section{Introdução}
+Nos dias atuais, a automação residencial tem se tornado uma tendência crescente, proporcionando maior conforto e eficiência no uso de recursos. O controle de temperatura é um dos aspectos mais importantes na automação, especialmente em regiões com climas extremos. Este projeto visa desenvolver um sistema que permita o controle remoto de ar-condicionado, utilizando um microcontrolador ESP32 e um sensor de temperatura DHT22.
+
+\section{Objetivos}
+O objetivo principal deste sistema é permitir que os usuários:
+\begin{itemize}
+    \item Controle o ar-condicionado de forma remota através de uma interface web.
+    \item Monitore a temperatura ambiente em tempo real.
+    \item Registre e visualize o histórico de uso do ar-condicionado.
+\end{itemize}
+
+\section{Metodologia}
+O sistema é composto por um microcontrolador ESP32 que se comunica com um ar-condicionado via sinais infravermelhos (IR). A interface web é desenvolvida em PHP e permite que os usuários realizem login, ajustem a temperatura e visualizem o histórico de ações. O sistema também registra as ações dos usuários em um banco de dados MySQL.
+
+\subsection{Componentes do Sistema}
+Os principais componentes do sistema incluem:
+\begin{itemize}
+    \item \textbf{Microcontrolador ESP32}: Responsável pelo envio de comandos IR para o ar-condicionado.
+    \item \textbf{Sensor DHT22}: Utilizado para medir a temperatura ambiente.
+    \item \textbf{Interface Web}: Desenvolvida em PHP, permite interação do usuário com o sistema.
+    \item \textbf{Banco de Dados MySQL}: Armazena informações sobre usuários, ambientes e histórico de ações.
+\end{itemize}
+
+\section{Resultados Esperados}
+Espera-se que o sistema proporcione uma experiência de controle de temperatura eficiente e intuitiva, permitindo que os usuários ajustem suas configurações de ar-condicionado de qualquer lugar, contribuindo para a economia de energia e o conforto ambiental.
+
+\section{Conclusão}
+O desenvolvimento deste sistema de controle de temperatura representa um avanço significativo na automação residencial, oferecendo aos usuários uma solução prática e eficiente para o gerenciamento de seus ambientes. Futuras implementações poderão incluir integração com assistentes virtuais e aprimoramentos na interface do usuário.
+
+\begin{thebibliography}{99}
+\bibitem{ref1} Autor, A. (Ano). Título do artigo. \textit{Nome da Revista}, Volume(Número), páginas.
+\bibitem{ref2} Autor, B. (Ano). Título do livro. Editora.
+\end{thebibliography}
+
+\end{document}
