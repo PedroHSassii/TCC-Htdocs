@@ -10,9 +10,12 @@ const char* password = "6z829>9B";
 
 const String serverName = "http://192.168.137.1/dados.php";
 
-const int ledPin1 = D2; // LED 1
-const int ledPin2 = D3; // LED 2
-const int tsopPin = D4; // Pino do TSOP4838
+const int ledPin1 = D2;     // LED 1
+const int ledPin2 = D3;     // LED 2
+const int tsopPin = D4;     // Pino do receptor IR (TSOP4838)
+const int ledIrPin = D5;    // Pino do LED Infrared (TX)
+const int dhtPin = D6;      // Pino do sensor DHT11
+const int dhtType = DHT11;  // Tipo do sensor
 
 IRrecv irrecv(tsopPin);
 decode_results results;
