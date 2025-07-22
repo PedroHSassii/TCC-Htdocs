@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/06/2025 às 21:41
+-- Tempo de geração: 22/07/2025 às 17:38
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `ambientes` (
   `swing` tinyint(4) DEFAULT 0,
   `timer` tinyint(4) DEFAULT 0,
   `status` tinyint(4) DEFAULT 0,
-  `checksum` varchar(10) DEFAULT NULL
+  `temp_atual` int(11) NOT NULL,
+  `hum_atual` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -78,7 +79,6 @@ CREATE TABLE `historico` (
 
 CREATE TABLE `ir_codes` (
   `id` int(11) NOT NULL,
-  `cod_tipofunc` int(11) NOT NULL,
   `cod_ambiente` int(11) NOT NULL,
   `codigo_ir` varchar(50) NOT NULL,
   `modo` varchar(20) DEFAULT NULL,
@@ -86,8 +86,7 @@ CREATE TABLE `ir_codes` (
   `velocidade` varchar(20) DEFAULT NULL,
   `swing` tinyint(1) DEFAULT NULL,
   `timer` tinyint(1) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `checksum` varchar(10) DEFAULT NULL
+  `status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -100,6 +99,21 @@ CREATE TABLE `predios` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `responsavel_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `temporaria`
+--
+
+CREATE TABLE `temporaria` (
+  `id` int(11) NOT NULL,
+  `leitura` int(11) NOT NULL,
+  `alteracao` int(11) NOT NULL,
+  `codigo_captado` int(11) NOT NULL,
+  `predio` int(11) NOT NULL,
+  `sala` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -158,7 +172,6 @@ ALTER TABLE `historico`
 --
 ALTER TABLE `ir_codes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `cod_tipofunc` (`cod_tipofunc`),
   ADD KEY `cod_ambiente` (`cod_ambiente`);
 
 --
@@ -237,7 +250,6 @@ ALTER TABLE `historico`
 -- Restrições para tabelas `ir_codes`
 --
 ALTER TABLE `ir_codes`
-  ADD CONSTRAINT `ir_codes_ibfk_1` FOREIGN KEY (`cod_tipofunc`) REFERENCES `funcoes` (`cod_tipofunc`) ON DELETE CASCADE,
   ADD CONSTRAINT `ir_codes_ibfk_2` FOREIGN KEY (`cod_ambiente`) REFERENCES `ambientes` (`id`) ON DELETE CASCADE;
 
 --

@@ -57,13 +57,23 @@ if (isset($_POST['ler'])) {
     $stmt_insert_temp->bind_param("iiiis", $leitura, $alteracao, $codigo_captado, $predio_id, $numero_sala);
     if ($stmt_insert_temp->execute()) {
         // Não exibir alert aqui, a resposta será via AJAX
-        // echo "<script>alert('Registro temporário criado com sucesso!');</script>";
+        echo "<script>alert('Registro temporário criado com sucesso!');</script>";
     } else {
         echo "<script>alert('Erro ao criar registro temporário: " . $stmt_insert_temp->error . "');</script>";
     }
     $stmt_insert_temp->close();
 } elseif (isset($_POST['salvar'])) {
+    // Obter o ID do ambiente selecionado
     $cod_ambiente = $_POST['ambiente'];
+
+    // Buscar o predio_id e numero_sala a partir do cod_ambiente
+    $stmt_ambiente_info = $conn->prepare("SELECT predio_id, numero_sala FROM ambientes WHERE id = ?");
+    $stmt_ambiente_info->bind_param("i", $cod_ambiente);
+    $stmt_ambiente_info->execute();
+    $stmt_ambiente_info->bind_result($predio_id, $numero_sala);
+    $stmt_ambiente_info->fetch();
+    $stmt_ambiente_info->close();
+
     $codigo_ir = $_POST['codigo_ir'];
     $modo = $_POST['modo'];
     $temperatura = $_POST['temperatura'];
@@ -73,8 +83,8 @@ if (isset($_POST['ler'])) {
     $status = isset($_POST['status']) ? 1 : 0; // 1 para true, 0 para false
 
     // Salvar no banco de dados
-    $stmt = $conn->prepare("INSERT INTO ir_codes (cod_ambiente, codigo_ir, modo, temperatura, velocidade, swing, timer, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("isiiiiii", $cod_ambiente, $codigo_ir, $modo, $temperatura, $velocidade, $swing, $timer, $status);    if ($stmt->execute()) {
+    $stmt = $conn->prepare("INSERT INTO ir_codes (numero_sala, predio_id, codigo_ir, modo, temperatura, velocidade, swing, timer, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iisiiiiii", $numero_sala, $predio_id, $codigo_ir, $modo, $temperatura, $velocidade, $swing, $timer, $status);    if ($stmt->execute()) {
         echo "<script>alert('Código IR salvo com sucesso!');</script>";
     } else {
         echo "<script>alert('Erro ao salvar código IR: " . $stmt->error . "');</script>";
